@@ -15,6 +15,102 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Featured Slider functionality (if on home page)
+    const featuredSlider = document.querySelector('.featured-slider');
+    if (featuredSlider) {
+        const sliderTrack = document.querySelector('.slider-track');
+        const slides = document.querySelectorAll('.slider-slide');
+        const prevButton = document.getElementById('prev-slide');
+        const nextButton = document.getElementById('next-slide');
+        const indicators = document.querySelectorAll('.slider-indicator');
+        
+        let currentSlide = 0;
+        const slideCount = slides.length;
+        let slideInterval;
+        const autoPlayDelay = 5000; // 5 seconds between slides
+        
+        // Initialize slider
+        function initSlider() {
+            // Set initial position
+            goToSlide(0);
+            
+            // Start autoplay
+            startAutoPlay();
+            
+            // Add event listeners
+            prevButton.addEventListener('click', prevSlide);
+            nextButton.addEventListener('click', nextSlide);
+            
+            // Setup indicators
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    goToSlide(index);
+                    resetAutoPlay();
+                });
+            });
+            
+            // Pause autoplay on hover
+            featuredSlider.addEventListener('mouseenter', stopAutoPlay);
+            featuredSlider.addEventListener('mouseleave', startAutoPlay);
+        }
+        
+        // Go to specific slide
+        function goToSlide(index) {
+            // Update current slide index
+            currentSlide = index;
+            
+            // Handle edge cases
+            if (currentSlide < 0) currentSlide = slideCount - 1;
+            if (currentSlide >= slideCount) currentSlide = 0;
+            
+            // Transform slider track
+            sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, i) => {
+                if (i === currentSlide) {
+                    indicator.classList.add('active', 'bg-gray-800');
+                    indicator.classList.remove('bg-gray-300');
+                } else {
+                    indicator.classList.remove('active', 'bg-gray-800');
+                    indicator.classList.add('bg-gray-300');
+                }
+            });
+        }
+        
+        // Go to next slide
+        function nextSlide() {
+            goToSlide(currentSlide + 1);
+            resetAutoPlay();
+        }
+        
+        // Go to previous slide
+        function prevSlide() {
+            goToSlide(currentSlide - 1);
+            resetAutoPlay();
+        }
+        
+        // Start autoplay
+        function startAutoPlay() {
+            stopAutoPlay(); // Clear any existing interval
+            slideInterval = setInterval(nextSlide, autoPlayDelay);
+        }
+        
+        // Stop autoplay
+        function stopAutoPlay() {
+            clearInterval(slideInterval);
+        }
+        
+        // Reset autoplay (call after user interaction)
+        function resetAutoPlay() {
+            stopAutoPlay();
+            startAutoPlay();
+        }
+        
+        // Initialize the slider
+        initSlider();
+    }
+    
     // Gallery functionality (if on gallery page)
     const galleryGrid = document.getElementById('gallery-grid');
     if (galleryGrid) {

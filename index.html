@@ -34,31 +34,92 @@
         </div>
     </section>
 
-    <!-- Featured Images Section -->
+    <!-- Featured Images Section (Slider) -->
     <section class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <h2 class="text-2xl font-light text-center mb-12">Featured Captures</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="featured-image">
-                    <img src="img/sum/img1.jpg" alt="Mountain landscape" class="w-full h-80 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-medium">Alpine Serenity</h3>
-                        <p class="text-gray-600">Swiss Alps, 2024</p>
+            
+            <div class="featured-slider-container relative max-w-5xl mx-auto">
+                <!-- Slider Controls -->
+                <button id="prev-slide" class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white bg-opacity-50 hover:bg-opacity-80 p-2 rounded-r-lg shadow-md transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                
+                <button id="next-slide" class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white bg-opacity-50 hover:bg-opacity-80 p-2 rounded-l-lg shadow-md transition duration-300">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+                
+                <!-- Slider Wrapper -->
+                <div class="featured-slider overflow-hidden">
+                    <div class="slider-track flex transition-transform duration-500">
+                        <!-- Slide 1 -->
+                        <div class="slider-slide min-w-full">
+                            <div class="featured-image mx-auto max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
+                                <img src="img/sum/img1.jpg" alt="Mountain landscape" class="w-full h-80 md:h-96 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-medium">Alpine Serenity</h3>
+                                    <p class="text-gray-600">Swiss Alps, 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 2 -->
+                        <div class="slider-slide min-w-full">
+                            <div class="featured-image mx-auto max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
+                                <img src="img/sum/img2.jpg" alt="Ocean sunset" class="w-full h-80 md:h-96 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-medium">Golden Horizons</h3>
+                                    <p class="text-gray-600">Bali, Indonesia, 2023</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 3 -->
+                        <div class="slider-slide min-w-full">
+                            <div class="featured-image mx-auto max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
+                                <img src="img/sum/img3.jpg" alt="Forest path" class="w-full h-80 md:h-96 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-medium">Woodland Whispers</h3>
+                                    <p class="text-gray-600">Kyoto, Japan, 2024</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 4 -->
+                        <div class="slider-slide min-w-full">
+                            <div class="featured-image mx-auto max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
+                                <img src="img/sum/img4.jpg" alt="Wildlife portrait" class="w-full h-80 md:h-96 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-medium">Wildlife Wonders</h3>
+                                    <p class="text-gray-600">Tanzania, 2023</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Slide 5 -->
+                        <div class="slider-slide min-w-full">
+                            <div class="featured-image mx-auto max-w-4xl bg-white shadow-lg rounded-lg overflow-hidden">
+                                <img src="img/sum/img5.jpg" alt="Northern lights" class="w-full h-80 md:h-96 object-cover">
+                                <div class="p-6">
+                                    <h3 class="text-xl font-medium">Aurora Dreams</h3>
+                                    <p class="text-gray-600">Iceland, 2024</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="featured-image">
-                    <img src="img/sum/img2.jpg" alt="Ocean sunset" class="w-full h-80 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-medium">Golden Horizons</h3>
-                        <p class="text-gray-600">Bali, Indonesia, 2023</p>
-                    </div>
-                </div>
-                <div class="featured-image">
-                    <img src="img/sum/img3.jpg" alt="Forest path" class="w-full h-80 object-cover">
-                    <div class="p-4">
-                        <h3 class="text-lg font-medium">Woodland Whispers</h3>
-                        <p class="text-gray-600">Kyoto, Japan, 2024</p>
-                    </div>
+                
+                <!-- Slider Indicators -->
+                <div class="slider-indicators flex justify-center mt-6 gap-2">
+                    <button class="slider-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-800 transition-colors duration-300 active" data-index="0"></button>
+                    <button class="slider-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-800 transition-colors duration-300" data-index="1"></button>
+                    <button class="slider-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-800 transition-colors duration-300" data-index="2"></button>
+                    <button class="slider-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-800 transition-colors duration-300" data-index="3"></button>
+                    <button class="slider-indicator w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-800 transition-colors duration-300" data-index="4"></button>
                 </div>
             </div>
         </div>
