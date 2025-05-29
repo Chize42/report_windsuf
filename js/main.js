@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Start autoplay
         function startAutoPlay() {
             stopAutoPlay(); // Clear any existing interval
-            slideInterval = setInterval(nextSlide, autoPlayDelay);
+            slideInterval = setInterval(nextSlide, 2000);
         }
         
         // Stop autoplay
