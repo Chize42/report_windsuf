@@ -49,6 +49,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
             
+            // Add click event to slide images for modal popup
+            const slideImages = document.querySelectorAll('.slider-slide img');
+            slideImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    openSlideModal(this);
+                });
+            });
+            
             // Pause autoplay on hover
             featuredSlider.addEventListener('mouseenter', stopAutoPlay);
             featuredSlider.addEventListener('mouseleave', startAutoPlay);
@@ -111,6 +119,63 @@ document.addEventListener('DOMContentLoaded', function() {
         initSlider();
     }
     
+    // Initialize modal if it exists on any page
+    const modal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    const modalClose = document.getElementById('modal-close');
+    
+    // Function to open modal with an image (used by both slider and gallery)
+    function openSlideModal(img) {
+        if (modal && modalImage) {
+            // Get parent elements to find title and description
+            const slideContainer = img.closest('.slider-slide');
+            let title = '';
+            let description = '';
+            
+            if (slideContainer) {
+                const titleEl = slideContainer.querySelector('h3');
+                const descEl = slideContainer.querySelector('p');
+                if (titleEl) title = titleEl.textContent;
+                if (descEl) description = descEl.textContent;
+            }
+            
+            // Use the full-size image from raw folder if available
+            modalImage.src = img.getAttribute('data-full') || img.src;
+            modalImage.alt = img.alt;
+            
+            if (modalTitle) modalTitle.textContent = title;
+            if (modalDescription) modalDescription.textContent = description;
+            
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            
+            // Add event listener to modal image to open in new tab
+            modalImage.addEventListener('click', function() {
+                window.open(modalImage.src, '_blank');
+            });
+        }
+    }
+    
+    // Close modal when close button is clicked
+    if (modalClose) {
+        modalClose.addEventListener('click', function() {
+            modal.classList.add('hidden');
+            document.body.style.overflow = ''; // Restore scrolling
+        });
+    }
+    
+    // Close modal when clicking outside the image
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+    
     // Gallery functionality (if on gallery page)
     const galleryGrid = document.getElementById('gallery-grid');
     if (galleryGrid) {
@@ -136,17 +201,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Open modal with selected gallery item
         function openModal(item) {
             const img = item.querySelector('img');
-            const title = item.querySelector('h3');
-            const description = item.querySelector('p');
-            
-            // Use the full-size image from raw folder if available, otherwise use the thumbnail
-            modalImage.src = img.getAttribute('data-full') || img.src;
-            modalImage.alt = img.alt;
-            modalTitle.textContent = title.textContent;
-            modalDescription.textContent = description.textContent;
-            
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
+            openSlideModal(img);
         }
         
         // Close modal
