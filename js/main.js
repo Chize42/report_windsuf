@@ -43,7 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const title = item.querySelector('h3');
             const description = item.querySelector('p');
             
-            modalImage.src = img.src;
+            // Use the full-size image from raw folder if available, otherwise use the thumbnail
+            modalImage.src = img.getAttribute('data-full') || img.src;
             modalImage.alt = img.alt;
             modalTitle.textContent = title.textContent;
             modalDescription.textContent = description.textContent;
