@@ -1,0 +1,7 @@
+This folder contains image files for the NatureLens photography portfolio website.
+For a production website, replace these placeholder files with actual high-quality photographs.
+
+Image naming convention:
+- featured1.jpg, featured2.jpg, etc. - For featured images on the home page
+- gallery1.jpg, gallery2.jpg, etc. - For the gallery page
+- photographer.jpg - For the about page

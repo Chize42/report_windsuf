@@ -1,0 +1,93 @@
+/* Custom Styles for Nature Lens Photography Portfolio */
+
+/* General Styles */
+body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    line-height: 1.6;
+}
+
+/* Header Animation */
+header {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Image Hover Effects */
+.featured-image img, .gallery-item img {
+    transition: transform 0.5s ease, opacity 0.3s ease;
+}
+
+.featured-image:hover img, .gallery-item:hover img {
+    transform: scale(1.03);
+}
+
+/* Form Input Focus */
+input:focus, textarea:focus {
+    outline: none;
+}
+
+/* Gallery Item Styles */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Filter Button Styles */
+.filter-btn {
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background-color: #1a202c;
+    color: white;
+}
+
+/* Modal Animation */
+#image-modal {
+    transition: opacity 0.3s ease;
+}
+
+/* Custom Animation for Page Transitions */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+section {
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    header nav ul {
+        font-size: 0.9rem;
+    }
+    
+    header nav ul {
+        gap: 1rem;
+    }
+}
+
+/* Accessibility Focus Styles */
+a:focus, button:focus, input:focus, textarea:focus {
+    outline: 2px solid #4a5568;
+    outline-offset: 2px;
+}
+
+/* For Screen Readers */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
